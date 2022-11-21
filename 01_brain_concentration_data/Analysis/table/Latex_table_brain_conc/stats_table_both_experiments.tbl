@@ -1,0 +1,14 @@
+\begin{tabular}{l l r r r r r r r r}
+\toprule
+& & & \multicolumn{4}{c}{\textbf{Experiment 1 (1 mg/kg)}}&& \multicolumn{2}{c} {\textbf{Experiment 2 (3 mg/kg)}}\\
+\cline{4-7} \cline{9-10}
+\textbf{Compound} & \textbf{Region} && \textbf{Veh} &   \textbf{Har} &    \textbf{DMT} & \textbf{Har + DMT} && \textbf{Veh} & \textbf{Har + DMT} \\
+\midrule
+              DMT &    {Front Cort} && {10.8 (8.7)} &    {4.8 (4.4)} &   {14.5 (13.6)} &    {149.5 (123.2)} &&    {0.0 (0.0)} &     {1472.7 (369.2)} \\
+             	  &    {Cerebellum} &&  {5.9 (6.3)} &    {4.1 (5.1)} &     {8.7 (3.6)} &     {105.1 (89.2)} &&    {0.0 (0.0)} &     {2122.7 (434.2)} \\
+            3-IAA &    {Front Cort} && {20.4 (9.5)} &   {14.1 (1.2)} & {503.9 (137.7)} &    {257.5 (103.6)} &&   {20.9 (2.1)} &      {530.7 (129.8)} \\
+            	  &    {Cerebellum} && {13.3 (3.7)} &   {11.1 (1.9)} & {398.5 (128.3)} &    {194.1 (117.2)} &&  {49.1 (11.4)} &      {652.1 (186.5)} \\
+          Harmine &    {Front Cort} &&  {0.8 (0.6)} & {128.4 (65.0)} &   {20.1 (46.0)} &    {325.6 (345.6)} &&    {0.0 (0.0)} &      {411.6 (137.8)} \\
+         	  &    {Cerebellum} &&  {1.7 (3.0)} & {103.9 (64.8)} &   {13.6 (31.0)} &    {189.0 (134.3)} &&    {0.0 (0.0)} &      {435.9 (107.4)} \\
+\bottomrule
+\end{tabular}

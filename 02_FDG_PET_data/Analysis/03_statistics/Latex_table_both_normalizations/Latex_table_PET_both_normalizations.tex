@@ -1,0 +1,26 @@
+\documentclass[tikz,crop,convert={density=400,outext=.png}]{standalone}
+%\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{etoolbox}
+\usepackage[referable]{threeparttablex}
+\usepackage[round-mode=places,detect-weight=true,detect-inline-weight=math]{siunitx}
+\renewcommand\arraystretch{1.2}
+
+\listfiles
+
+\begin{document}
+\begin{table}
+%\centering\tlstyle
+\begin{threeparttable}
+\robustify\bfseries
+%\caption{Mean and standard deviation whole-brain normalized SUV values from [$^{18}$F]FDG-PET and group statistics.}
+\input{stats_table_both_normalizations_2.tbl}
+    %\begin{tablenotes}
+      %\item\footnotesize{\textbf{Abbreviations:} mPFC = medial prefrontal cortex, OFC = orbitofrontal cortex, NAc = nucleus accumbens,  \\ Har = harmine, Veh =  vehicle, df = degrees of freedom.  \\
+%Values in columns 2-5 represent mean (SD) in SUV values per group, N = 5 for \textit{Veh} and N = 6 for \textit{Har, DMT, and Har + DMT}.  For hippocampus and cerebellum Kruskal-Wallis-test (\textit{$\chi^{2}$}) was used, for all other regions a one-way ANOVA (\textit{F}) was used. Last two columns represent corresponding \textit{p}-values and degrees of freedom. }
+ %   \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+%\footnotesize{\textbf{Abbreviations:} mPFC, medial prefrontal cortex; OFC, orbitofrontal cortex; NAc, nucleus accumbens; Har, harmine, Veh, vehicle; df, degrees of freedom. \\
+%Values in columns 2-5 represent mean (SD) in SUV values per group, N = 6 for \textit{Har + DMT, DMT, Har} and N = 5 for \textit{Veh}.  ANOVA was done for df = degrees of freedom. n~=~9.}
+\end{document}

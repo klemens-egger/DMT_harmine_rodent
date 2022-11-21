@@ -1,0 +1,18 @@
+\begin{tabular}{l@{\hskip 12pt}S[table-format = 2.2]S[table-format = 2.2]S[table-format = 2.2]S[table-format = 2.2]S[table-format = 2.2]S[table-format = 2.2]S[table-format = 2.2]}
+\toprule
+\textbf{compound} & \textbf{region} &  \textbf{Veh} & \textbf{Har + DMT} \\
+\midrule
+            3-IAA &    {Front Cort} & {49.1 (11.4)} &    {652.1 (186.5)} \\
+            3-IAA &    {Cerebellum} &  {20.9 (2.1)} &    {530.7 (129.8)} \\
+              DMT &    {Front Cort} &   {0.0 (0.0)} &   {2122.7 (434.2)} \\
+              DMT &    {Cerebellum} &   {0.0 (0.0)} &   {1472.7 (369.2)} \\
+      DMT-N-Oxide &    {Front Cort} &   {0.0 (0.0)} &       {10.1 (2.4)} \\
+      DMT-N-Oxide &    {Cerebellum} &   {0.0 (0.0)} &      {26.9 (11.6)} \\
+              NMT &    {Front Cort} &   {0.0 (0.0)} &        {1.9 (0.4)} \\
+              NMT &    {Cerebellum} &   {0.0 (0.0)} &        {3.6 (1.3)} \\
+          Harmine &    {Front Cort} &   {0.0 (0.0)} &    {435.9 (107.4)} \\
+          Harmine &    {Cerebellum} &   {0.0 (0.0)} &    {411.6 (137.8)} \\
+           Harmol &    {Front Cort} &   {0.0 (0.0)} &        {3.0 (0.4)} \\
+           Harmol &    {Cerebellum} &   {0.0 (0.0)} &        {3.8 (1.0)} \\
+\bottomrule
+\end{tabular}

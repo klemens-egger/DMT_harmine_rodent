@@ -1,0 +1,26 @@
+\documentclass[tikz,crop,convert={density=400,outext=.png}]{standalone}
+
+\usepackage{booktabs}
+\usepackage{etoolbox}
+\usepackage[referable]{threeparttablex}
+\usepackage[round-mode=places,detect-weight=true,detect-inline-weight=math]{siunitx}
+\renewcommand\arraystretch{1.2}
+
+\listfiles
+
+\begin{document}
+\begin{table}
+%\centering\tlstyle
+\begin{threeparttable}
+\robustify\bfseries
+%\caption{Mean and standard deviation glucose normalized SUV values from [$^{18}$F]FDG-PET and group statistics.}
+\input{stats_table_blood_glucose.tbl}
+  %  \begin{tablenotes}
+     % \item\footnotesize{\textbf{Abbreviations:} T1 = Timepoint 1, baseline at the time of the first injection (t=0min); T2 = Timepoint 2, glucose concentration at the time of [$^{18}$F]FDG injection (t+25min), T3 = Timepoint 3, glucose concentration before start of PET scan (t+70min).  \\ Har = harmine, Veh =  vehicle, df = degrees of freedom.  \\
+%Values in columns 2-5 represent mean (SD) glucose concentration in mmol/L per group, N = 6 for all four groups.  The last 3 columns show the results from repeated-measures ANOVAs and their corresponding \textit{p}-values and degrees of freedom.}
+%    \end{tablenotes}
+  \end{threeparttable}
+\end{table}
+%\footnotesize{\textbf{Abbreviations:} T1 = Timepoint 1, baseline at the time of the first injection (t=0min); T2 = Timepoint 2, glucose concentration at the time of [$^{18}$F]FDG injection (t+25min), T3 = Timepoint 3, glucose concentration before start of PET scan (t+70min).  \\ Har = harmine, Veh =  vehicle, df = degrees of freedom.  \\
+%Values in columns 2-5 represent mean (SD) glucose concentration in mmol/L per group, N = 6 for all four groups.  The last 3 columns show the results from repeated-measures ANOVAs and their corresponding \textit{p}-values and degrees of freedom.}
+\end{document}

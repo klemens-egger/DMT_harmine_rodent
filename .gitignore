@@ -1,0 +1,8 @@
+
+# ignore big files in plot folders
+
+/01_brain_concentration_data/Analysis/plots_for_paper/*
+
+/02_FDG_PET_data/Analysis/plots_for_paper/*
+
+/03_KETANSERIN_and_MHMZ_DATA/plots/*

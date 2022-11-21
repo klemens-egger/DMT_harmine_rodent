@@ -1,0 +1,28 @@
+\documentclass[tikz,crop,convert={density=400,outext=.png}]{standalone}
+
+\usepackage{adjustbox}
+\usepackage{booktabs}
+\usepackage{etoolbox}
+\usepackage[referable]{threeparttablex}
+\usepackage[round-mode=places,detect-weight=true,detect-inline-weight=math]{siunitx}
+\renewcommand\arraystretch{1.2}
+
+\listfiles
+
+\begin{document}
+\begin{table}
+%\centering\tlstyle
+%\begin{adjustbox}{width=\textwidth}
+\begin{threeparttable}
+\robustify\bfseries
+%\caption{Mean and standard deviation whole-brain normalized SUV values from [$^{18}$F]FDG-PET and group statistics.}
+\input{stats_table_both_experiments.tbl}
+    %\begin{tablenotes}
+      %\item\footnotesize{For the compounds DMT, 3-IAA and harmine concentrations found in brain are given for each group in frontal cortex and cerebellum. Concentrations are represented as mean (SD) in ng/g.  \\ In experiment 1 N=5 for group 'Veh' and N=6 for groups 'Har', 'DMT', and 'Har + DMT'. In experiment 2 N=4 for group 'Veh' and N=5 for group 'Har + DMT'. In experiment 1 administered doses were 1 mg/kg bodyweight DMT and harmine, respectively, In experiment 2 doses were 3 mg/kg bodyweight DMT and harmine, respectively.\\ \textbf{Abbreviations:} Veh =  vehicle, DMT = \textit{N,N}-dimethyltryptamine, Har = harmine, 3-IAA = 3-indole acetic acid, Front Cort = frontal cortex, n/d = not detected. }
+   % \end{tablenotes}
+  \end{threeparttable}
+  %\end{adjustbox}
+\end{table}
+%\footnotesize{\textbf{Abbreviations:} mPFC, medial prefrontal cortex; OFC, orbitofrontal cortex; NAc, nucleus accumbens; Har, harmine, Veh, vehicle; df, degrees of freedom. \\
+%Values in columns 2-5 represent mean (SD) in SUV values per group, N = 6 for \textit{Har + DMT, DMT, Har} and N = 5 for \textit{Veh}.  ANOVA was done for df = degrees of freedom. n~=~9.}
+\end{document}
