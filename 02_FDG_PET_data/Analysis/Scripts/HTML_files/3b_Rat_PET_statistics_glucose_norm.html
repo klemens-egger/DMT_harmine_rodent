@@ -14605,6 +14605,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 <span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pingouin</span> <span class="k">as</span> <span class="nn">pg</span>
 </pre></div>
 
      </div>
@@ -15902,12 +15903,16 @@ class="
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">f_chi_stats</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">f_chi_p_values</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">eta_squareds</span> <span class="o">=</span> <span class="p">[]</span>
+
 <span class="k">for</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">regions</span><span class="p">:</span>
     <span class="n">F_chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df1</span><span class="p">[(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">region</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Treatment_Group&#39;</span><span class="p">)][</span><span class="s1">&#39;F&#39;</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">F_chi_p_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df1</span><span class="p">[(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">region</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Treatment_Group&#39;</span><span class="p">)][</span><span class="s1">&#39;PR(&gt;F)&#39;</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-    
+    <span class="n">eta_squared</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df1</span><span class="p">[(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">region</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Treatment_Group&#39;</span><span class="p">)][</span><span class="s1">&#39;eta_sq&#39;</span><span class="p">],</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
     <span class="n">f_chi_stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">F_chi</span><span class="p">)</span>
     <span class="n">f_chi_p_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">F_chi_p_value</span><span class="p">)</span>
+    <span class="n">eta_squareds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eta_squared</span><span class="p">)</span>
 </pre></div>
 
      </div>
@@ -15929,6 +15934,7 @@ class="
 <span class="n">mean_veh</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">F_chi_stats</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">F_chi_p_values</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">eta_squareds</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">degrees_of_f_all</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="k">for</span> <span class="n">region</span> <span class="ow">in</span> <span class="n">regions</span><span class="p">:</span>
@@ -15954,9 +15960,11 @@ class="
 
     <span class="n">F_chi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df1</span><span class="p">[(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">region</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Treatment_Group&#39;</span><span class="p">)][</span><span class="s1">&#39;F&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">F_chi_p_value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df1</span><span class="p">[(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">region</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Treatment_Group&#39;</span><span class="p">)][</span><span class="s1">&#39;PR(&gt;F)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">eta_squared</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">df1</span><span class="p">[(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;region&#39;</span><span class="p">]</span><span class="o">==</span><span class="n">region</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">df1</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Treatment_Group&#39;</span><span class="p">)][</span><span class="s1">&#39;eta_sq&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">decimals</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     
     <span class="n">F_chi_stats</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">F_chi</span><span class="p">)</span>
     <span class="n">F_chi_p_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">F_chi_p_value</span><span class="p">)</span>
+    <span class="n">eta_squareds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eta_squared</span><span class="p">)</span>
     
     <span class="c1">## degrees of freedom: ANOVA (between df = 3, within df = 19), Kruskal-Wallis df = 3</span>
     <span class="n">degrees_of_f</span> <span class="o">=</span> <span class="s1">&#39;(3, 19)&#39;</span>
@@ -15992,6 +16000,7 @@ class="
 <span class="n">df_pet_stats</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;F / &#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\u03A7\u00b2</span><span class="s1">&#39;</span><span class="p">)),</span> <span class="n">value</span><span class="o">=</span><span class="n">F_chi_stats</span><span class="p">)</span>
 <span class="n">df_pet_stats</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;p&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">F_chi_p_values</span><span class="p">)</span>
 <span class="n">df_pet_stats</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;df&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">degrees_of_f_all</span><span class="p">)</span>
+<span class="n">df_pet_stats</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="s1">&#39;eta</span><span class="se">\u00b2</span><span class="s1">&#39;</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="n">eta_squareds</span><span class="p">)</span>
 
 <span class="n">df_pet_stats</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">analysis_path</span><span class="si">}</span><span class="s1">/03_statistics/stats_table_glucose_norm.xlsx&#39;</span><span class="p">,</span> <span class="n">sheet_name</span><span class="o">=</span><span class="s2">&quot;stats&quot;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
 <span class="n">df_pet_stats</span>
@@ -16014,7 +16023,7 @@ class="
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/var/folders/lb/nxxqtlbj7yd1c5frnp5_vxk40000gn/T/ipykernel_33775/3219135569.py:2: FutureWarning: DataFrame.set_axis &#39;inplace&#39; keyword is deprecated and will be removed in a future version. Use `obj = obj.set_axis(..., copy=False)` instead
+<pre>/var/folders/lb/nxxqtlbj7yd1c5frnp5_vxk40000gn/T/ipykernel_91516/1520711881.py:2: FutureWarning: DataFrame.set_axis &#39;inplace&#39; keyword is deprecated and will be removed in a future version. Use `obj = obj.set_axis(..., copy=False)` instead
   df_pet_stats.set_axis([&#39;Region&#39;], axis=&#39;columns&#39;, inplace=True)
 </pre>
 </div>
@@ -16052,6 +16061,7 @@ class="
       <th>F / Χ²</th>
       <th>p</th>
       <th>df</th>
+      <th>eta²</th>
     </tr>
   </thead>
   <tbody>
@@ -16065,6 +16075,7 @@ class="
       <td>0.24</td>
       <td>0.87</td>
       <td>(3, 19)</td>
+      <td>0.04</td>
     </tr>
     <tr>
       <th>1</th>
@@ -16076,6 +16087,7 @@ class="
       <td>0.44</td>
       <td>0.73</td>
       <td>(3, 19)</td>
+      <td>0.06</td>
     </tr>
     <tr>
       <th>2</th>
@@ -16087,6 +16099,7 @@ class="
       <td>0.44</td>
       <td>0.73</td>
       <td>(3, 19)</td>
+      <td>0.06</td>
     </tr>
     <tr>
       <th>3</th>
@@ -16098,6 +16111,7 @@ class="
       <td>1.22</td>
       <td>0.33</td>
       <td>(3, 19)</td>
+      <td>0.16</td>
     </tr>
     <tr>
       <th>4</th>
@@ -16109,6 +16123,7 @@ class="
       <td>0.53</td>
       <td>0.66</td>
       <td>(3, 19)</td>
+      <td>0.08</td>
     </tr>
     <tr>
       <th>5</th>
@@ -16120,6 +16135,7 @@ class="
       <td>0.20</td>
       <td>0.90</td>
       <td>(3, 19)</td>
+      <td>0.03</td>
     </tr>
     <tr>
       <th>6</th>
@@ -16131,6 +16147,7 @@ class="
       <td>0.87</td>
       <td>0.47</td>
       <td>(3, 19)</td>
+      <td>0.12</td>
     </tr>
     <tr>
       <th>7</th>
@@ -16142,6 +16159,7 @@ class="
       <td>1.62</td>
       <td>0.22</td>
       <td>(3, 19)</td>
+      <td>0.20</td>
     </tr>
     <tr>
       <th>8</th>
@@ -16153,6 +16171,7 @@ class="
       <td>0.52</td>
       <td>0.67</td>
       <td>(3, 19)</td>
+      <td>0.08</td>
     </tr>
   </tbody>
 </table>
@@ -16188,6 +16207,7 @@ class="
 <span class="n">df_pet_stats_latex</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">extbf{</span><span class="se">\t</span><span class="s1">extit{F / $\chi^</span><span class="si">{2}</span><span class="s1">$}}&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">F_chi_stats</span><span class="p">)</span>
 <span class="n">df_pet_stats_latex</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">extbf{</span><span class="se">\t</span><span class="s1">extit</span><span class="si">{p}</span><span class="s1">}&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">F_chi_p_values</span><span class="p">)</span>
 <span class="n">df_pet_stats_latex</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">extbf</span><span class="si">{df}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="s1">&#39;{&#39;</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span><span class="s1">&#39;}&#39;</span><span class="p">,</span> <span class="n">degrees_of_f_all</span><span class="p">)))</span>
+<span class="n">df_pet_stats_latex</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">extbf{</span><span class="se">\t</span><span class="s1">extit{$\eta^</span><span class="si">{2}</span><span class="s1">$}}&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">eta_squareds</span><span class="p">)</span>
 
 <span class="n">df_pet_stats_latex</span>
 </pre></div>
@@ -16209,7 +16229,7 @@ class="
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/var/folders/lb/nxxqtlbj7yd1c5frnp5_vxk40000gn/T/ipykernel_33775/2005436087.py:4: FutureWarning: DataFrame.set_axis &#39;inplace&#39; keyword is deprecated and will be removed in a future version. Use `obj = obj.set_axis(..., copy=False)` instead
+<pre>/var/folders/lb/nxxqtlbj7yd1c5frnp5_vxk40000gn/T/ipykernel_91516/1211601265.py:4: FutureWarning: DataFrame.set_axis &#39;inplace&#39; keyword is deprecated and will be removed in a future version. Use `obj = obj.set_axis(..., copy=False)` instead
   df_pet_stats_latex.set_axis([&#39;\textbf{Region}&#39;], axis=&#39;columns&#39;, inplace=True)
 </pre>
 </div>
@@ -16247,6 +16267,7 @@ class="
       <th>\textbf{\textit{F / $\chi^{2}$}}</th>
       <th>\textbf{\textit{p}}</th>
       <th>\textbf{df}</th>
+      <th>\textbf{\textit{$\eta^{2}$}}</th>
     </tr>
   </thead>
   <tbody>
@@ -16260,6 +16281,7 @@ class="
       <td>0.24</td>
       <td>0.87</td>
       <td>{(3, 19)}</td>
+      <td>0.04</td>
     </tr>
     <tr>
       <th>1</th>
@@ -16271,6 +16293,7 @@ class="
       <td>0.44</td>
       <td>0.73</td>
       <td>{(3, 19)}</td>
+      <td>0.06</td>
     </tr>
     <tr>
       <th>2</th>
@@ -16282,6 +16305,7 @@ class="
       <td>0.44</td>
       <td>0.73</td>
       <td>{(3, 19)}</td>
+      <td>0.06</td>
     </tr>
     <tr>
       <th>3</th>
@@ -16293,6 +16317,7 @@ class="
       <td>1.22</td>
       <td>0.33</td>
       <td>{(3, 19)}</td>
+      <td>0.16</td>
     </tr>
     <tr>
       <th>4</th>
@@ -16304,6 +16329,7 @@ class="
       <td>0.53</td>
       <td>0.66</td>
       <td>{(3, 19)}</td>
+      <td>0.08</td>
     </tr>
     <tr>
       <th>5</th>
@@ -16315,6 +16341,7 @@ class="
       <td>0.20</td>
       <td>0.90</td>
       <td>{(3, 19)}</td>
+      <td>0.03</td>
     </tr>
     <tr>
       <th>6</th>
@@ -16326,6 +16353,7 @@ class="
       <td>0.87</td>
       <td>0.47</td>
       <td>{(3, 19)}</td>
+      <td>0.12</td>
     </tr>
     <tr>
       <th>7</th>
@@ -16337,6 +16365,7 @@ class="
       <td>1.62</td>
       <td>0.22</td>
       <td>{(3, 19)}</td>
+      <td>0.20</td>
     </tr>
     <tr>
       <th>8</th>
@@ -16348,6 +16377,7 @@ class="
       <td>0.52</td>
       <td>0.67</td>
       <td>{(3, 19)}</td>
+      <td>0.08</td>
     </tr>
   </tbody>
 </table>
@@ -16400,7 +16430,7 @@ class="
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="application/vnd.jupyter.stderr">
-<pre>/var/folders/lb/nxxqtlbj7yd1c5frnp5_vxk40000gn/T/ipykernel_33775/4254894966.py:10: FutureWarning: In future versions `DataFrame.to_latex` is expected to utilise the base implementation of `Styler.to_latex` for formatting and rendering. The arguments signature may therefore change. It is recommended instead to use `DataFrame.style.to_latex` which also contains additional functionality.
+<pre>/var/folders/lb/nxxqtlbj7yd1c5frnp5_vxk40000gn/T/ipykernel_91516/4254894966.py:10: FutureWarning: In future versions `DataFrame.to_latex` is expected to utilise the base implementation of `Styler.to_latex` for formatting and rendering. The arguments signature may therefore change. It is recommended instead to use `DataFrame.style.to_latex` which also contains additional functionality.
   tbl.write(df_pet_stats_latex.to_latex(index=False,
 </pre>
 </div>
@@ -16465,6 +16495,7 @@ class="
       <th>F / Χ²</th>
       <th>p</th>
       <th>df</th>
+      <th>eta²</th>
     </tr>
   </thead>
   <tbody>
@@ -16478,6 +16509,7 @@ class="
       <td>0.24</td>
       <td>0.87</td>
       <td>(3, 19)</td>
+      <td>0.04</td>
     </tr>
     <tr>
       <th>1</th>
@@ -16489,6 +16521,7 @@ class="
       <td>0.44</td>
       <td>0.73</td>
       <td>(3, 19)</td>
+      <td>0.06</td>
     </tr>
     <tr>
       <th>2</th>
@@ -16500,6 +16533,7 @@ class="
       <td>0.44</td>
       <td>0.73</td>
       <td>(3, 19)</td>
+      <td>0.06</td>
     </tr>
     <tr>
       <th>3</th>
@@ -16511,6 +16545,7 @@ class="
       <td>1.22</td>
       <td>0.33</td>
       <td>(3, 19)</td>
+      <td>0.16</td>
     </tr>
     <tr>
       <th>4</th>
@@ -16522,6 +16557,7 @@ class="
       <td>0.53</td>
       <td>0.66</td>
       <td>(3, 19)</td>
+      <td>0.08</td>
     </tr>
     <tr>
       <th>5</th>
@@ -16533,6 +16569,7 @@ class="
       <td>0.20</td>
       <td>0.90</td>
       <td>(3, 19)</td>
+      <td>0.03</td>
     </tr>
     <tr>
       <th>6</th>
@@ -16544,6 +16581,7 @@ class="
       <td>0.87</td>
       <td>0.47</td>
       <td>(3, 19)</td>
+      <td>0.12</td>
     </tr>
     <tr>
       <th>7</th>
@@ -16555,6 +16593,7 @@ class="
       <td>1.62</td>
       <td>0.22</td>
       <td>(3, 19)</td>
+      <td>0.20</td>
     </tr>
     <tr>
       <th>8</th>
@@ -16566,6 +16605,7 @@ class="
       <td>0.52</td>
       <td>0.67</td>
       <td>(3, 19)</td>
+      <td>0.08</td>
     </tr>
   </tbody>
 </table>

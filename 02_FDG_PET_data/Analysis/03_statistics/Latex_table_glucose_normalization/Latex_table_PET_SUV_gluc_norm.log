@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.9)  7 NOV 2022 15:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2020.2.9)  29 NOV 2022 10:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -825,7 +825,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 11.
  (./stats_table_glucose_norm.tbl)
-Overfull \hbox (96.38913pt too wide) in paragraph at lines 15--23
+Overfull \hbox (111.72978pt too wide) in paragraph at lines 15--23
 [][] 
  []
 
@@ -910,11 +910,11 @@ stats_table_glucose_norm.tbl
 Here is how much of TeX's memory you used:
  24560 strings out of 492616
  509446 string characters out of 6129482
- 502672 words of memory out of 5000000
+ 499672 words of memory out of 5000000
  28174 multiletter control sequences out of 15000+600000
  535374 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,13n,63p,857b,533s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,10n,63p,857b,533s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><
 /usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb>
@@ -923,7 +923,7 @@ Here is how much of TeX's memory you used:
 sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
 local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loc
 al/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb>
-Output written on Latex_table_PET_SUV_gluc_norm.pdf (1 page, 90625 bytes).
+Output written on Latex_table_PET_SUV_gluc_norm.pdf (1 page, 90355 bytes).
 PDF statistics:
  43 PDF objects out of 1000 (max. 8388607)
  31 compressed objects within 1 object stream
