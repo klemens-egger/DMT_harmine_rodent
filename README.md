@@ -8,7 +8,10 @@
 
 ### Description
 
-This repository contains raw and processed data as supplemental material for the paper "The monoamine oxidase A inhibitor harmine potentiates retention in rodent brain of the psychedelic agent DMT without altering 5HT2A receptor occupancy or FDG uptake".
+This repository contains raw and processed data as supplemental material for the paper "A pilot study of cerebral metabolism and serotonin 5HT2A receptor occupancy in rats treated with the psychedelic tryptamine DMT in conjunction with the MAO inhibitor harmine" published in Frontiers in Pharmacology. 
+
+DOI: ![10.3389/fphar.2023.1140656](10.3389/fphar.2023.1140656)
+
 
 ### Usage
 
